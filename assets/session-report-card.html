@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClawTank Session Report Card</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0f;
+            color: #ffffff;
+            width: 1200px;
+            height: 630px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card {
+            width: 1120px;
+            height: 550px;
+            background: linear-gradient(135deg, #1a1a1f 0%, #0f0f14 100%);
+            border-radius: 16px;
+            padding: 40px;
+            border: 2px solid #2a2a2f;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #FF6B4A 0%, #FF8A4A 50%, #FF6B4A 100%);
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .room-info h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .room-info .meta {
+            font-size: 16px;
+            color: #a0a0a0;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .duration {
+            text-align: right;
+        }
+        
+        .duration .time {
+            font-size: 48px;
+            font-weight: 700;
+            color: #FF6B4A;
+            line-height: 1;
+        }
+        
+        .duration .label {
+            font-size: 14px;
+            color: #a0a0a0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .stat {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+        
+        .stat .value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+        
+        .stat .label {
+            font-size: 12px;
+            color: #a0a0a0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .mvps {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .mvps h3 {
+            font-size: 16px;
+            color: #FF6B4A;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        
+        .agent-mvp {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .agent-mvp:last-child {
+            border-bottom: none;
+        }
+        
+        .agent-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .agent-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FF6B4A, #FF8A4A);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+        
+        .agent-details .name {
+            font-weight: 600;
+            color: #ffffff;
+            font-size: 14px;
+        }
+        
+        .agent-details .model {
+            font-size: 12px;
+            color: #a0a0a0;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .xp {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: #FF6B4A;
+            font-weight: 600;
+        }
+        
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .participants {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: #a0a0a0;
+        }
+        
+        .branding {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #a0a0a0;
+        }
+        
+        .crab {
+            font-size: 18px;
+            color: #FF6B4A;
+        }
+        
+        /* Background decorative elements */
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            opacity: 0.02;
+            background-image: radial-gradient(circle at 50% 50%, #FF6B4A 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="bg-pattern"></div>
+        
+        <div class="header">
+            <div class="room-info">
+                <h1 id="roomName">🦀 build-git-roast</h1>
+                <div class="meta" id="participants">alice • bob • 3 agents</div>
+            </div>
+            <div class="duration">
+                <div class="time" id="duration">15</div>
+                <div class="label">minutes</div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="value" id="linesOfCode">711</div>
+                    <div class="label">Lines of Code</div>
+                </div>
+                <div class="stat">
+                    <div class="value" id="commits">7</div>
+                    <div class="label">Commits</div>
+                </div>
+                <div class="stat">
+                    <div class="value" id="prs">3</div>
+                    <div class="label">PRs Merged</div>
+                </div>
+                <div class="stat">
+                    <div class="value" id="tasks">6</div>
+                    <div class="label">Tasks Completed</div>
+                </div>
+            </div>
+            
+            <div class="mvps">
+                <h3>🏆 Agent MVPs</h3>
+                <div class="agent-mvp">
+                    <div class="agent-info">
+                        <div class="agent-avatar">🏗️</div>
+                        <div class="agent-details">
+                            <div class="name">Atlas</div>
+                            <div class="model">claude-sonnet-4</div>
+                        </div>
+                    </div>
+                    <div class="xp">+250 XP</div>
+                </div>
+                <div class="agent-mvp">
+                    <div class="agent-info">
+                        <div class="agent-avatar">⚡</div>
+                        <div class="agent-details">
+                            <div class="name">Spark</div>
+                            <div class="model">gpt-4o</div>
+                        </div>
+                    </div>
+                    <div class="xp">+320 XP</div>
+                </div>
+                <div class="agent-mvp">
+                    <div class="agent-info">
+                        <div class="agent-avatar">📝</div>
+                        <div class="agent-details">
+                            <div class="name">Quill</div>
+                            <div class="model">claude-haiku</div>
+                        </div>
+                    </div>
+                    <div class="xp">+180 XP</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="participants" id="footerParticipants">
+                Humans: alice, bob • Agents: Atlas, Spark, Quill
+            </div>
+            <div class="branding">
+                Built with ClawTank <span class="crab">🦀</span>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // This script allows customization of the report card
+        // You can call updateReportCard(data) to populate with session data
+        
+        function updateReportCard(sessionData) {
+            if (sessionData.roomName) {
+                document.getElementById('roomName').textContent = `🦀 ${sessionData.roomName}`;
+            }
+            
+            if (sessionData.duration) {
+                document.getElementById('duration').textContent = sessionData.duration;
+            }
+            
+            if (sessionData.stats) {
+                const stats = sessionData.stats;
+                if (stats.linesOfCode) document.getElementById('linesOfCode').textContent = stats.linesOfCode;
+                if (stats.commits) document.getElementById('commits').textContent = stats.commits;
+                if (stats.prs) document.getElementById('prs').textContent = stats.prs;
+                if (stats.tasks) document.getElementById('tasks').textContent = stats.tasks;
+            }
+            
+            if (sessionData.participants) {
+                const humans = sessionData.participants.humans || [];
+                const agents = sessionData.participants.agents || [];
+                
+                document.getElementById('participants').textContent = 
+                    `${humans.join(' • ')} • ${agents.length} agents`;
+                
+                document.getElementById('footerParticipants').textContent = 
+                    `Humans: ${humans.join(', ')} • Agents: ${agents.map(a => a.name).join(', ')}`;
+            }
+            
+            // Update MVP section if provided
+            if (sessionData.mvps) {
+                const mvpSection = document.querySelector('.mvps');
+                const mvpList = mvpSection.querySelector('.agent-mvp').parentElement;
+                
+                // Clear existing MVPs
+                mvpList.innerHTML = '<h3>🏆 Agent MVPs</h3>';
+                
+                sessionData.mvps.forEach(mvp => {
+                    const mvpDiv = document.createElement('div');
+                    mvpDiv.className = 'agent-mvp';
+                    mvpDiv.innerHTML = `
+                        <div class="agent-info">
+                            <div class="agent-avatar">${mvp.avatar || '🤖'}</div>
+                            <div class="agent-details">
+                                <div class="name">${mvp.name}</div>
+                                <div class="model">${mvp.model}</div>
+                            </div>
+                        </div>
+                        <div class="xp">+${mvp.xp} XP</div>
+                    `;
+                    mvpList.appendChild(mvpDiv);
+                });
+            }
+        }
+        
+        // Example usage:
+        // updateReportCard({
+        //     roomName: "build-awesome-project",
+        //     duration: 23,
+        //     stats: { linesOfCode: 1200, commits: 12, prs: 4, tasks: 8 },
+        //     participants: {
+        //         humans: ["alice", "bob", "charlie"],
+        //         agents: [
+        //             { name: "Atlas", model: "claude-sonnet-4" },
+        //             { name: "Spark", model: "gpt-4o" }
+        //         ]
+        //     },
+        //     mvps: [
+        //         { name: "Atlas", model: "claude-sonnet-4", avatar: "🏗️", xp: 450 },
+        //         { name: "Spark", model: "gpt-4o", avatar: "⚡", xp: 380 }
+        //     ]
+        // });
+    </script>
+</body>
+</html>

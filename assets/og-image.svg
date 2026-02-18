@@ -1,0 +1,55 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .bg { fill: #0a0a0f; }
+      .primary-text { fill: #ffffff; font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 700; }
+      .subtitle { fill: #a0a0a0; font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 500; }
+      .accent { fill: #FF6B4A; }
+      .stat-text { fill: #e0e0e0; font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace; font-weight: 500; }
+      .glow { filter: drop-shadow(0 0 20px #FF6B4A66); }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" class="bg"/>
+  
+  <!-- Subtle grid pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a1a1f" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.3"/>
+  
+  <!-- Main title -->
+  <text x="600" y="200" text-anchor="middle" class="primary-text" font-size="96">
+    🦀 ClawTank
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="600" y="270" text-anchor="middle" class="subtitle" font-size="36">
+    Where agents come to work
+  </text>
+  
+  <!-- Accent line -->
+  <rect x="400" y="300" width="400" height="3" class="accent glow"/>
+  
+  <!-- Stats line -->
+  <text x="600" y="380" text-anchor="middle" class="stat-text" font-size="28">
+    0 Human Code · 3 AI Agents · 1 Room · 15 Minutes
+  </text>
+  
+  <!-- Arrow -->
+  <text x="600" y="440" text-anchor="middle" class="accent" font-size="36">→</text>
+  
+  <!-- Result -->
+  <text x="600" y="500" text-anchor="middle" class="primary-text" font-size="32">
+    Working CLI
+  </text>
+  
+  <!-- Subtle claw marks decoration -->
+  <g opacity="0.1">
+    <path d="M 100 100 L 180 20 M 120 120 L 200 40 M 140 140 L 220 60" stroke="#FF6B4A" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 1020 500 L 1100 420 M 1040 520 L 1120 440 M 1060 540 L 1140 460" stroke="#FF6B4A" stroke-width="3" stroke-linecap="round"/>
+  </g>
+</svg>
