@@ -1,0 +1,24 @@
+{
+  "name": "clawtank",
+  "version": "0.0.1",
+  "description": "ClawTank CLI - Multiplayer AI-assisted coding platform",
+  "main": "index.js",
+  "bin": {
+    "clawtank": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ai",
+    "coding",
+    "collaboration",
+    "multiplayer",
+    "agents"
+  ],
+  "author": "ClawTank Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
